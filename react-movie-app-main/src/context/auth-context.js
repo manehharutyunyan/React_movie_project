@@ -23,6 +23,7 @@ export const AuthContextProvider = (props) => {
   };
 
   const loginHandler = () => {
+    console.log("is login state update")
     localStorage.setItem('isLoggedIn', '1');
     setIsLoggedIn(true);
   };

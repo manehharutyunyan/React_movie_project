@@ -4,15 +4,10 @@ import MovieList from "../../components/MovieList";
 import MovieListHeading from "../../components/MovieListHeading";
 import SearchBox from "../../components/SearchBox";
 import AddFavourites from "../../components/AddFavourites";
-import RemoveFavourites from "../../components/RemoveFavourites";
 import Button from "../../components/Button/Button";
-import Favourites from "../../components/Favourites";
-import AuthContext from "../../context/auth-context";
 import { NavLink } from "react-router-dom";
 
 const Welcome = () => {
-  const authCtx = useContext(AuthContext);
-
   const [movies, setMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -52,15 +47,6 @@ const Welcome = () => {
     saveToLocalStorage(newFavouriteList);
   };
 
-  const removeFavouriteMovie = (movie) => {
-    const newFavouriteList = favourites.filter(
-      (favourite) => favourite.imdbID !== movie.imdbID
-    );
-
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
-  };
-
   return (
     <div className="container-fluid movie-app">
       <div className="row d-flex align-items-center mt-4 mb-4">
@@ -77,13 +63,6 @@ const Welcome = () => {
           favouriteComponent={AddFavourites}
         />
       </div>
-      {authCtx.isLoggedIn && (
-        <Favourites
-          movies={favourites}
-          handleFavouritesClick={removeFavouriteMovie}
-          favouriteComponent={RemoveFavourites}
-        />
-      )}
     </div>
   );
 };

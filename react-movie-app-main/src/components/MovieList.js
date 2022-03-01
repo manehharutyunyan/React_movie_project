@@ -1,30 +1,23 @@
-import React, { useContext } from "react";
-import FavouriteMovieHover from "./FavouriteMovieHover/FavouriteMovieHover";
-
-import AuthContext from "../context/auth-context";
+import React from 'react';
 
 const MovieList = (props) => {
-  const authCtx = useContext(AuthContext);
+	const FavouriteComponent = props.favouriteComponent;
 
-  return (
-    <>
-      {props.movies.map((movie, index) => (
-        <div
-          key={index}
-          className="image-container d-flex justify-content-start m-3"
-        >
-          <img src={movie.Poster} alt="movie"></img>
-          {authCtx.isLoggedIn && (
-            <FavouriteMovieHover
-              handleFavouritesClick={props.handleFavouritesClick}
-              favouriteComponent={props.favouriteComponent}
-              movie={movie}
-            />
-          )}
-        </div>
-      ))}
-    </>
-  );
+	return (
+		<>
+			{props.movies.map((movie, index) => (
+				<div key={index} className='image-container d-flex justify-content-start m-3'>
+					<img src={movie.Poster} alt='movie'></img>
+					<div
+						onClick={() => props.handleFavouritesClick(movie)}
+						className='overlay d-flex align-items-center justify-content-center'
+					>
+						<FavouriteComponent />
+					</div>
+				</div>
+			))}
+		</>
+	);
 };
 
 export default MovieList;

@@ -1,0 +1,21 @@
+.item h3 {
+    margin: 0.3rem 0;
+    font-size: 0.5rem;
+  }
+  
+  .item header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+
+  
+  .item p {
+    color: #3a3a3a;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
